@@ -1,17 +1,17 @@
-//Action Constant Names
-//Actions are payloads of information that send data from 
-//your applicatin to your store.
-//Actions are plain JavaScript objects. Actions must have a type
-//property that indicates the type of action being performed.
-const SELECT_BAND = 'SELECT_BAND';
+import axios from 'axios';
 
+export const CREATE_POSTS = 'CREATE_POSTS';
 
-export function selectBand(band){
-	//select and is an ActionCreator, it needs to return an action
-	//which is an object that must have a type property
-	console.log("You have selected:", band.name);
+const ROOT_URL = 'http://rest.learncode.academy/api/paul';
+
+export function createPost(props){
+	const request = axios.post(`${ROOT_URL}/posts`, props);
 	return {
-		type: SELECT_BAND,
-		payload: band
+		type: CREATE_POSTS,
+		payload: request
 	};
 };
+
+
+
+
