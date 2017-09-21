@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import Signin from './components/auth/signin';
+import Signout from './components/auth/signout';
 import App from './components/app';
 import reducers from './reducers';
 import ListItem from './components/list/new-list-item';
@@ -18,6 +19,7 @@ ReactDOM.render(
 		<Router history={browserHistory}>
 			<Route path="/" component={App}>
 				<Route path="signin" component={Signin} />
+				<Route path="signout" component={Signout} />
 				<Route path="newitem" component={ListItem} />
 			</Route>
 		</Router>
