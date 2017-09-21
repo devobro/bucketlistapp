@@ -4,9 +4,14 @@ var bodyParser = require('body-parser');
 var app = express();
 var router = require('./router');
 var mongoose = require('mongoose');
+var cors = require('cors');
 
 //DB Connection
-mongoose.connect('mongodb://localhost:bucket/bucket');
+var promise = mongoose.connect('mongodb://localhost/bucket', {
+	useMongoClient: true
+});
+
+app.use(cors());
 
 //Middleware
 app.use(bodyParser.json({type: '*/*'}));
