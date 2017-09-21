@@ -6,11 +6,11 @@ import {Navbar, Nav, NavItem, NavDropdown, DropdownButton, MenuItem, Collapsible
 				<Navbar>
 				    <Navbar.Header>
 				      <Navbar.Brand>
-				        <a href="#">Bucket List</a>
+				        <a href="./">Bucket List</a>
 				      </Navbar.Brand>
 				    </Navbar.Header>
 				    <Nav>
-				      <NavItem eventKey={1} href="#">Sign In</NavItem>
+				      <NavItem eventKey={1} href="./signin">Sign In</NavItem>
 				      <NavItem eventKey={2} href="#">Sign Up</NavItem>
 				      <NavDropdown eventKey={3} title="Cool Shizzle!" id="basic-nav-dropdown">
 				        <MenuItem eventKey={3.1}>Action</MenuItem>

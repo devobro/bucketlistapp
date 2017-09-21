@@ -1,10 +1,14 @@
 import { combineReducers } from 'redux';
-// import BandsReducer from './reducer_bands'; //added
-// import SelectedBand from './reducer_selectedband'; //added
-import { reducer as formReducer } from 'redux-form'; //added
+import { reducer as formReducer } from 'redux-form';
+import authReducer from './auth_reducer';
+import {
+	AUTH_USER,
+	UNAUTH_USER
+} from '../actions/types';
 
 const rootReducer = combineReducers({
-	form: formReducer
+	form: formReducer,
+	auth: authReducer
 });
 
 export default rootReducer;
