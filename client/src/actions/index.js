@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import { AUTH_USER, UNAUTH_USER } from './types';
+import { AUTH_USER, UNAUTH_USER, AUTH_ERROR } from './types';
 import authReducer from '../reducers/auth_reducer';
 
 
@@ -20,12 +20,17 @@ export function signinUser({ email, password }){
 			localStorage.setItem('token', response.data.token);
 			//This sends us off to the /newitem view.
 			browserHistory.push('/newitem');
-		}).catch(() => {
-
-		});
-
+		}).catch(response => dispatch(authError("Bad login info")));
 	};
 };
+
+
+export function authError(error) {
+	return {
+		type: AUTH_ERROR,
+		payload: error
+	};
+}
 
 
 
