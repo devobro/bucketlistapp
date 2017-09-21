@@ -6,11 +6,12 @@ import Signin from './components/auth/signin';
 import App from './components/app';
 import reducers from './reducers';
 import ListItem from './components/list/new-list-item';
+import reduxThunk from 'redux-thunk';
 
 //letting us create some routes on the front end
 import { Router, Route, IndexRoute, browserHistory} from 'react-router';
 
-var createStoreWithMiddleware = applyMiddleware()(createStore);
+var createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 
 ReactDOM.render(
 	<Provider store={createStoreWithMiddleware(reducers)}>
