@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import authReducer from './auth_reducer';
-import PostsReducer from './reducer_posts';
+import postsReducer from './reducer_posts';
 
 const rootReducer = combineReducers({
 	form: formReducer,
 	auth: authReducer,
-	posts: PostsReducer
+	posts: postsReducer
 });
 
 export default rootReducer;
