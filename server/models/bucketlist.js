@@ -22,7 +22,7 @@ var BucketListSchema = new Schema({
 		default: ''
 	},
 
-	SpecificUser: {
+	specificUser: {
 		type: String,
 		default: ''
 	}

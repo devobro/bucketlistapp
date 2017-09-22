@@ -2,7 +2,12 @@ var BucketList = require('../models/bucketlist.js');
 
 exports.addBucketList = function(req, res, next) {
 	//For Postman use
-	//var title = req.body.title
+	// var title = req.body.title;
+	// var topic = req.body.topic;
+	// var url = req.body.url;
+	// var content = req.body.content;
+	// var specificUser = req.user._id;
+	// for client use
 	var title = req.body.props.title;
 	var topic = req.body.props.topic;
 	var url = req.body.props.url;
