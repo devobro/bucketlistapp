@@ -17,4 +17,5 @@ module.exports = function(app){ //sets routes
 	app.post('/signup', Auth.signup);
 	app.post('/signin', requireSignin, Auth.signin);
 	app.post('/newitem', requireAuth, BucketList.addBucketList);
+	app.get('/items', requireAuth, BucketList.fetchBucketLists);
 };
