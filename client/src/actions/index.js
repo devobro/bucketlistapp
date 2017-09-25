@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, CREATE_POSTS, FETCH_POSTS } from './types';
+import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, CREATE_POSTS, FETCH_POSTS, FETCH_POST, DELETE_POST } from './types';
 import authReducer from '../reducers/auth_reducer';
 
 //const ROOT_URL = 'http://rest.learncode.academy/api/paul';
@@ -72,6 +72,34 @@ export function fetchPosts(){
 		});
 	}
 }
+
+export function fetchPost(id){
+	return function(dispatch) {
+		axios.get(`${ROOT_URL}/items/${id}`, config)
+
+		.then((response) => {
+			console.log("Response: ", response)
+			dispatch({
+				type: FETCH_POST,
+				payload: response
+			});
+		});
+	}
+}
+
+export function deletePost(id){
+	return function(dispatch) {
+		axios.delete(`${ROOT_URL}/items/${id}`, config)
+		.then((response) => {
+			dispatch({
+				type: DELETE_POST,
+				payload: response
+			});
+			browserHistory.push('/items');
+		});
+	}
+}
+
 
 export function signoutUser(){
 	localStorage.removeItem('token');
