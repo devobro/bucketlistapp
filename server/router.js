@@ -19,5 +19,6 @@ module.exports = function(app){ //sets routes
 	app.post('/newitem', requireAuth, BucketList.addBucketList);
 	app.get('/items', requireAuth, BucketList.fetchBucketLists);
 	app.get('/items/:id', requireAuth, BucketList.fetchBucketList);
+	app.put('/items/:id', requireAuth, BucketList.updateBucketList);
 	app.delete('/items/:id', requireAuth, BucketList.deleteBucketList);
 };
