@@ -1,6 +1,15 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, CREATE_POSTS, FETCH_POSTS, FETCH_POST, DELETE_POST } from './types';
+import { 
+	AUTH_USER, 
+	UNAUTH_USER,
+	AUTH_ERROR, 
+	CREATE_POSTS, 
+	FETCH_POSTS, 
+	FETCH_POST, 
+	DELETE_POST, 
+	UPDATE_POST 
+} from './types';
 import authReducer from '../reducers/auth_reducer';
 
 //const ROOT_URL = 'http://rest.learncode.academy/api/paul';
@@ -100,6 +109,19 @@ export function deletePost(id){
 	}
 }
 
+export function updatePost(props, id){
+	return function(dispatch){
+		axios.put(`${ROOT_URL}/items/${id}`, { props }, config)
+
+		.then(response => {
+			dispatch({
+				type: UPDATE_POST,
+				payload: response
+			});
+			browserHistory.push('/items');
+		});
+	}
+}
 
 export function signoutUser(){
 	localStorage.removeItem('token');

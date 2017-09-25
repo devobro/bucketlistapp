@@ -9,8 +9,9 @@ import App from './components/app';
 import reducers from './reducers';
 import RequireAuth from './components/auth/require_auth';
 import ListItem from './components/list/new-list-item';
-import ListsShow from './components/list/list-items';
+import ListItems from './components/list/list-items';
 import ListShow from './components/list/list-show';
+import UpdateList from './components/list/update-list-item';
 import reduxThunk from 'redux-thunk';
 import { AUTH_USER } from './actions/types'
 
@@ -27,8 +28,9 @@ ReactDOM.render(
 				<Route path="signout" component={Signout} />
 				<Route path="signup" component={Signup} />
 				<Route path="newitem" component={RequireAuth(ListItem)} />
-				<Route path="items" component={RequireAuth(ListsShow)} />
+				<Route path="items" component={RequireAuth(ListItems)} />
 				<Route path="items/:id" component={RequireAuth(ListShow)} />
+				<Route path="updateitem/:id" component={RequireAuth(UpdateList)} />
 			</Route>
 		</Router>
 	</Provider>

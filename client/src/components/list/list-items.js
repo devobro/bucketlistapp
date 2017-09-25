@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import * as actions from '../../actions/index';
 import { fetchPosts } from '../../actions/index';
 import { Link } from 'react-router';
 import axios from 'axios';
@@ -17,19 +18,10 @@ class ListItems extends Component {
 		}
 	}
 	componentWillMount(){
-
-		axios.get(`${ROOT_URL}/items`, config)
-
-		.then((response) => {
-			const posts = response.data;
-			console.log("Response", response)
-			this.setState({
-				posts: [ ...posts ]
-			})
-		})
+		this.props.fetchPosts();
 	}
 	renderItems(){
-		return this.state.posts.map((post) => {
+		return this.props.posts.map((post) => {
 			return (
 				<li className="list-group-item" key={post._id}>
 					<Link to={"items/" + post._id}>
@@ -42,7 +34,7 @@ class ListItems extends Component {
 	}
 
 	render(){
-		if (this.state.posts == 0) {
+		if (this.props.posts == 0) {
 			return (
 				<div><h3>Still Loading...</h3></div>
 			);
@@ -76,7 +68,7 @@ function mapStateToProps(state){
 
 }
 
-export default connect(mapStateToProps, { fetchPosts: fetchPosts })(ListItems);
+export default connect(mapStateToProps, actions)(ListItems);
 
 
 
