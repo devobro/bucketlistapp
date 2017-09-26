@@ -40,10 +40,14 @@ class ListItem extends Component {
 	}
 }
 
+function mapStateToProps(state){
+	return { errorMessage: state.auth.error };
+}
+
 export default reduxForm({
 	form: 'PostsNewForm',
 	fields: ['title', 'topic', 'url', 'content']
-}, null, { createPost })(ListItem);
+}, mapStateToProps, { createPost })(ListItem);
 
 
 

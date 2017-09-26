@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/index';
-import { fetchPosts } from '../../actions/index';
 import { Link } from 'react-router';
 import axios from 'axios';
 
@@ -9,17 +8,14 @@ const ROOT_URL = 'http://localhost:3000';
 const config ={
 	headers: { authorization: localStorage.getItem('token')}
 }
-class ListItems extends Component {
-	constructor(props){
-		super(props);
 
-		this.state = {
-			posts : []
-		}
-	}
+class ListItems extends Component {
+
 	componentWillMount(){
 		this.props.fetchPosts();
+
 	}
+
 	renderItems(){
 		return this.props.posts.map((post) => {
 			return (
@@ -58,7 +54,7 @@ class ListItems extends Component {
 						{this.renderItems()}
 					</ul>	
 				</div>
-			)
+			);
 		}
 	}
 }

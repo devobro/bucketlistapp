@@ -65,7 +65,7 @@ function validate(formProps){
 	errors.password = 'Passwords must match';
 	}
 
-	console.log(formProps);
+	// console.log(formProps);
 	return errors;
 }
 

@@ -15,8 +15,8 @@ import authReducer from '../reducers/auth_reducer';
 //const ROOT_URL = 'http://rest.learncode.academy/api/paul';
 const ROOT_URL = 'http://localhost:3000';
 
-var config = {
-	headers: { authorization: localStorage.getItem('token') }
+let config = {
+	headers: { authorization: null }
 }
 
 export function signinUser({ email, password }){
@@ -28,10 +28,12 @@ export function signinUser({ email, password }){
 			dispatch({ type: AUTH_USER });
 			//This will put the token in localStorage. It's safe!!
 
+			config.headers.authorization = response.data.token;
+
 			localStorage.setItem('token', response.data.token);
 			//This sends us off to the /newitem view.
 			browserHistory.push('/newitem');
-		}).catch(response => dispatch(authError("Bad login info")));
+		}).catch(response => dispatch(authError("There was something wrong with your request.")));
 	};
 };
 
@@ -42,11 +44,13 @@ export function signupUser({ email, password }){
 		.then(response => {
 			dispatch({ type: AUTH_USER });
 
+			config.headers.authorization = response.data.token;
+			
 			//update the token
 			localStorage.setItem('token', response.data.token);
 			browserHistory.push('/newitem');
 		})
-		.catch(response => dispatch(authError("Bad login info")));
+		.catch(response => dispatch(authError(response.data.error)));
 	}
 }
 
@@ -71,7 +75,7 @@ export function fetchPosts(){
 		axios.get(`${ROOT_URL}/items`, config)
 
 		.then((response) => {
-			console.log("Response", response)
+			// console.log("Response", response)
 
 			dispatch({
 				type: FETCH_POSTS,

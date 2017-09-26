@@ -10,13 +10,7 @@ const config = {
 	headers: { authorization: localStorage.getItem('token') }
 }
 class ListShow extends Component {
-	constructor(props) {
-		super(props);
 
-		this.state = {
-			post: {}
-		}
-	}
 	componentWillMount() {
 		//todo - add the axios call here
 		//this.props.fetchPost(this.props.params.id);
